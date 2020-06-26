@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping List</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- We control the elements by id in Vue -->
+    <div id="shopping-list">
+        <!-- {{}} The mustache is a placeholder for view content -->
+        <h1>{{ header }}</h1>
+        <!-- v-model will bind the input to the header. Whatever is typed in the input 
+        will be displayed in the header -->
+        <input type="text" v-model='header'>
+    </div>
+    <!-- Include Vue into HTML -->
+    <script src="https://unpkg.com/vue@2.6.11/dist/vue.js"></script>
+    <!-- Vue scripting -->
+    <script>
+        // The el controls the element in Vue and the data controls the data
+        var shoppingList = new Vue({
+            el: '#shopping-list',
+            data: {
+                header: 'Vue is ready to party!',
+            },
+        });
+
+        // In the console type: shoppingList.$data.header = "Some Text"
+    </script>
+</body>
+</html>

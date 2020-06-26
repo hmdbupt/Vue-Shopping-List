@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping List</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- We control the elements by id in Vue -->
+    <div id="shopping-list">
+        <!-- {{}} The mustache is a placeholder for view content -->
+        <h1>{{ header.toLocaleUpperCase() }}</h1>
+        <!-- Adding items to list -->
+        <input type="text" v-model='newItem' placeholder="Add an item.">
+        <!-- Looping over list items -->
+        <ul>
+            <li v-for='item in items'>{{ item }}</li>
+        </ul>
+    </div>
+    <!-- Include Vue into HTML -->
+    <script src="https://unpkg.com/vue@2.6.11/dist/vue.js"></script>
+    <!-- Vue scripting -->
+    <script>
+        // The el controls the element in Vue and the data controls the data
+        var shoppingList = new Vue({
+            el: '#shopping-list',
+            newItem: '',
+            data: {
+                header: 'Shopping list app',
+                items: [
+                    '10 mangoes',
+                    '25 lychees',
+                    '20 cherries',
+                ]
+            },
+        });
+
+        // In the console type: shoppingList.$data.header = "Some Text"
+    </script>
+</body>
+</html>

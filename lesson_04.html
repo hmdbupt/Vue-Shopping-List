@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <style>
+        button,
+        input,
+        ul li {
+            font-weight: 600;
+        }
+
+        h1 {
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body class="container">
+    <!-- We control the elements by id in Vue -->
+    <div id="shopping-list">
+        <!-- {{}} The mustache is a placeholder for view content -->
+        <h1>{{ header.toLocaleUpperCase() }}</h1>
+        <!-- Button for adding items in the list -->
+        <div class="add-item-form">
+            <!-- Adding items to list -->
+            <!-- v-on has a shortcut, it can be replaced by @ -->
+            <input type="text" v-model="newItem" placeholder="Add an item." v-on:keyup.enter="saveItem">
+            <button class="btn btn-primary" v-on:click="saveItem">Save Item</button>
+            <button class="btn btn-danger" @click="items.pop()">Remove Item</button>
+        </div>
+        <!-- Looping over list items -->
+        <ul>
+            <li v-for='item in items'>{{ item }}</li>
+        </ul>
+    </div>
+    <!-- Include Vue into HTML -->
+    <script src="https://unpkg.com/vue@2.6.11/dist/vue.js"></script>
+    <!-- Vue scripting -->
+    <script>
+        // The el controls the element in Vue and the data controls the data
+        var shoppingList = new Vue({
+            el: '#shopping-list',
+            data: {
+                header: 'Shopping list app',
+                newItem: 'Awesome Vue',
+                items: [
+                    '10 mangoes',
+                    '25 lychees',
+                    '20 cherries',
+                ]
+            },
+            methods: {
+                saveItem: function () {
+                    this.items.push(this.newItem);
+                    this.newItem = '';
+                }
+            }
+        });
+
+        // In the console type: shoppingList.$data.header = "Some Text"
+    </script>
+</body>
+</html>
